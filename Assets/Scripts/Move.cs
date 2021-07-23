@@ -7,6 +7,9 @@ public class Move : MonoBehaviour
 {
     private Vector3 startPos;
 
+    [SerializeField]
+    private AnimationCurve ease;
+
     private void Start()
     {
         startPos = transform.position;
@@ -30,5 +33,31 @@ public class Move : MonoBehaviour
     public void MoveStartOnlyX()
     {
         transform.DOMoveX(1f, 3f);
+    }
+
+    public void MoveStartEase()
+    {
+        Tween tween = transform.DOMove(new Vector3(1, 0, 0), 3f);
+        tween.SetEase(ease);
+        tween.SetLoops(100);
+        tween.SetDelay(3.0f);
+    }
+
+    public void MoveStartCallback()
+    {
+        Tween tween = transform.DOMove(new Vector3(1, 0, 0), 3f);
+        tween.SetLoops(4);
+        tween.OnStart(() =>
+        {
+            Debug.Log("Tween Start");
+        });
+        tween.OnUpdate(() =>
+        {
+            Debug.Log("Tween Updating");
+        });
+        tween.OnComplete(() =>
+        {
+            Debug.Log("Tween Complete");
+        });
     }
 }
