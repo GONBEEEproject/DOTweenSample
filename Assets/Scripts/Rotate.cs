@@ -29,6 +29,6 @@ public class Rotate : MonoBehaviour
 
     public void RotateStartAxisAdd()
     {
-        transform.DORotate(new Vector3(0, 300f, 0), 3f, RotateMode.LocalAxisAdd);
+        transform.DORotate(new Vector3(0, 300f, 0), 3f, RotateMode.WorldAxisAdd);
     }
 }

@@ -24,7 +24,7 @@ public class To : MonoBehaviour
 
     private void Update()
     {
-        text.text = score.ToString();
+        //text.text = score.ToString();
     }
 
     public void StartTo()
@@ -33,6 +33,10 @@ public class To : MonoBehaviour
             () => score,
             x => score = x,
             500,
-            3f);
+            3f).OnUpdate(() =>
+            {
+                text.text = score.ToString();
+            });
+
     }
 }

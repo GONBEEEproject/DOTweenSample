@@ -8,7 +8,7 @@ public class Move : MonoBehaviour
     private Vector3 startPos;
 
     [SerializeField]
-    private AnimationCurve ease;
+    private Ease ease;
 
     private void Start()
     {
@@ -22,25 +22,30 @@ public class Move : MonoBehaviour
 
     public void MoveStart()
     {
-        transform.DOMove(new Vector3(1, 0, 0), 3f);
+        transform.DOMove(new Vector3(1, 0, 0), 1f);
     }
 
     public void MoveStartRelative()
     {
         transform.DOMove(new Vector3(1, 0, 0), 3f).SetRelative();
+
+
+
     }
 
     public void MoveStartOnlyX()
     {
-        transform.DOMoveX(1f, 3f);
+        transform.DOMoveX(1f, 3f).SetRelative();
+        transform.DOMove(new Vector3(1, 0, 0), 3f);
     }
 
     public void MoveStartEase()
     {
-        Tween tween = transform.DOMove(new Vector3(1, 0, 0), 3f);
+        Tween tween = transform.DOMove(new Vector3(5, 0, 0), 3f);
         tween.SetEase(ease);
-        tween.SetLoops(100);
-        tween.SetDelay(3.0f);
+        tween.SetLoops(-1);
+        tween.SetRelative();
+        tween.SetDelay(5f);
     }
 
     public void MoveStartCallback()

@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
+    [SerializeField]
+    private Transform[] transforms;
+
     public void StartPath()
     {
-        Vector3[] path = new Vector3[3];
-        path[0] = new Vector3(5, 0, -5);
-        path[1] = new Vector3(2, 0, 4);
-        path[2] = new Vector3(-5, 0, -3);
+        Vector3[] path = new Vector3[transforms.Length];
+        for (int i = 0; i < path.Length; i++)
+        {
+            path[i] = transforms[i].position;
+        }
 
-        transform.DOPath(path, 6f,PathType.Linear);
+        //transform.DOPath(path, 6f);
         transform.DOPath(path, 6f, PathType.CatmullRom);
-        transform.DOPath(path, 6f, PathType.CubicBezier);
+        //transform.DOPath(path, 6f, PathType.CubicBezier);
     }
 }
